@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ produto.nome }}{% endblock %}
+{% block body %}
+  <h1>{{ produto.nome }}</h1>
+  <p>{{ produto.descricao }}</p>
+  <p>R$ {{ produto.preco }}</p>
+  <a href="{% url 'adicionar_ao_carrinho' produto.id %}">Adicionar ao Carrinho</a>
+  <a href="{% url 'loja' %}">Voltar à loja</a>
+{% endblock %}

@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
 
-{% block body %}
-  <h1>teste loja</h1>
-  <h2>{{titulo}}</h2>
+{% block title %}{{ titulo }}{% endblock %}
 
-  {% %{}
+{% block body %}
+  <h1>{{ titulo }}</h1>
+
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="produtos">
+    {% for produto in produtos %}
+        <div class="produto">
+            <h3>{{ produto.nome }}</h3>
+            <p>{{ produto.descricao }}</p>
+            <p>R$ {{ produto.preco }}</p>
+            <a href="{% url 'adicionar_ao_carrinho' produto.id %}">Adicionar ao Carrinho</a>
+        </div>
+    {% endfor %}
+  </div>
+
+  <a href="{% url 'carrinho' %}">Ver Carrinho</a>
 {% endblock %}
