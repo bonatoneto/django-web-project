@@ -21,7 +21,7 @@ class ItemCarrinho(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     quantidade = models.IntegerField(default=1)
     sessao_id = models.CharField(max_length=100)
-    data_adicionado = models.DateTimeField(auto_created=True)
+    data_adicionado = models.DateTimeField(auto_now_add=True)  # Changed from auto_created
 
     def subtotal(self):
         return float(self.produto.preco) * self.quantidade
